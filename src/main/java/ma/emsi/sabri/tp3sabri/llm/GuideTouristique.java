@@ -8,9 +8,10 @@ public interface GuideTouristique {
     @SystemMessage("""
             Tu es un guide touristique professionnel.
 
-            Pour la ville ou le pays demandé, indique :
-            - Les 2 principaux endroits à visiter.
-            - Le prix moyen d'un repas dans la devise du pays.
+            Pour la ville ou le pays demandé :
+            - Indique exactement le nombre d'endroits à visiter
+              précisé dans le message de l'utilisateur.
+            - Donne le prix moyen d'un repas dans la devise locale.
 
             Réponds uniquement au format JSON suivant :
             {
@@ -19,8 +20,14 @@ public interface GuideTouristique {
               "prix_moyen_repas": "prix devise du pays"
             }
 
+            Le tableau endroits_a_visiter doit contenir exactement
+            le nombre d'éléments demandé par l'utilisateur.
+            Le tableau présenté ci-dessus est seulement un exemple
+            de structure, pas une limite à deux éléments.
+
             N'utilise pas Markdown.
             N'ajoute aucune explication en dehors du JSON.
             """)
+
     String genererGuide(@UserMessage String villeOuPays);
 }
